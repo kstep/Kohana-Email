@@ -15,6 +15,7 @@ class Email_Core {
    * @var  Swiftmailer  Holds Swiftmailer instance
    */
   protected static $_mail;
+  protected static $_from;
 
   /**
    * Creates a SwiftMailer instance.
@@ -59,8 +60,15 @@ class Email_Core {
       break;
     }
 
+    self::$_from = empty($config['from'])? '': $config['from'];
+
     // Create the SwiftMailer instance
     return self::$_mail = Swift_Mailer::newInstance($transport);
+  }
+
+  public static function send_to($to, $subject, $body, $html=false)
+  {
+      self::send($to, self::$_from, (string)$subject, (string)$body, (bool)$html);
   }
 
   /**
