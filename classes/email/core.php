@@ -68,7 +68,7 @@ class Email_Core {
 
   public static function send_to($to, $subject, $body, $html=false)
   {
-      self::send($to, self::$_from, (string)$subject, (string)$body, (bool)$html);
+      return self::send($to, self::$_from, (string)$subject, (string)$body, (bool)$html);
   }
 
   /**
